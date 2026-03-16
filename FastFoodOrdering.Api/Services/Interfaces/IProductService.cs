@@ -1,6 +1,6 @@
 ﻿namespace FastFoodOrdering.Api.Services.Interfaces;
 
-public class IProductService
+public interface IProductService
 {
 
 }

@@ -1,6 +1,6 @@
 ﻿namespace FastFoodOrdering.Api.Services.Interfaces;
 
-public interface IUserService
+public interface ITokenService
 {
 
 }
