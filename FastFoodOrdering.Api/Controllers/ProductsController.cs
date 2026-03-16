@@ -1,6 +1,10 @@
-﻿namespace FastFoodOrdering.Api.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
-public class ProductsController
+namespace FastFoodOrdering.Api.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ProductsController : ControllerBase
 {
-
+    
 }
