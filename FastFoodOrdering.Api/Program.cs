@@ -1,10 +1,17 @@
 using FastFoodOrdering.Api.Data;
+using FastFoodOrdering.Api.Services.Implementations;
+using FastFoodOrdering.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
 
 // Đăng ký ApplicationDbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IProductService, ProductService>();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -18,8 +25,12 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.MapScalarApiReference();
+
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+
+app.MapControllers();
 
 app.Run();
