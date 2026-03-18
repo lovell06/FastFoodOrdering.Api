@@ -1,14 +1,16 @@
-﻿namespace FastFoodOrdering.Api.Data;
+﻿using FastFoodOrdering.Api.Models;
+using Microsoft.EntityFrameworkCore;
+namespace FastFoodOrdering.Api.Data;
 
 public class ApplicationDbContext : DbContext
 {
-    private readonly ILoggerFactory _loggerFactory = LoggerFactory.Create(builder =>
-    {
-        builder.AddFilter(DbLoggerCategory.Query.Name, LogLevel.Information);
-        builder.AddConsole();
-    });
+//     private readonly ILoggerFactory _loggerFactory = LoggerFactory.Create(builder =>
+//     {
+//         builder.AddFilter(DbLoggerCategory.Query.Name, LogLevel.Information);
+//         builder.AddConsole();
+//     });
 
-    private readonl IConfiguration _config;
+    private readonly IConfiguration _config;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration config) : base(options)
     {
@@ -24,8 +26,8 @@ public class ApplicationDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        string connString = _config.GetConnectionString("DefaultConnection");
-        optionsBuilder.UseLoggerFactory(_loggerFactory);
+        var connString = _config.GetConnectionString("DefaultConnection");
+        // optionsBuilder.UseLoggerFactory(_loggerFactory);
         optionsBuilder.UseSqlServer(connString);
     }
 

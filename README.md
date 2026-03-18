@@ -63,7 +63,7 @@ FastFoodOrderingApi/
 ├── Program.cs
 └── FastFoodOrderingApi.csproj
 
-orderdetail
-
-- ProductId
-- OrderId
+dotnet add package Microsoft.Extensions.Logging --version 9
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 9
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 9
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 9

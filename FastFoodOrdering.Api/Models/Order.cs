@@ -1,4 +1,5 @@
-﻿namespace FastFoodOrdering.Api.Models;
+﻿using FastFoodOrdering.Api.Enums;
+namespace FastFoodOrdering.Api.Models;
 
 public class Order
 {

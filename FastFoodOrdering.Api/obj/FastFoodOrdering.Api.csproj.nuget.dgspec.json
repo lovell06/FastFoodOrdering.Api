@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {}
+    "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {}
   },
   "projects": {
-    "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {
+    "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
+        "projectUniqueName": "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
         "projectName": "FastFoodOrdering.Api",
-        "projectPath": "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
+        "projectPath": "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\obj\\",
+        "outputPath": "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -48,6 +48,26 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
