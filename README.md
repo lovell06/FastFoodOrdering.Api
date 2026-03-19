@@ -30,6 +30,12 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools --version 9
 dotnet add package Scalar.AspNetCore
 ```
 
+## Cấu hình dotnet-ef tools
+
+```bash
+dotnet tool install --global dotnet-ef
+```
+
 ## Cập nhật database
 
 ```bash
