@@ -1,6 +1,8 @@
-﻿namespace FastFoodOrdering.Api.Services.Interfaces;
+﻿using FastFoodOrdering.Api.Models;
+
+namespace FastFoodOrdering.Api.Services.Interfaces;
 
 public interface ITokenService
 {
-    string GenerateToken();
+    string GenerateToken(User user);
 }

@@ -1,6 +1,8 @@
-﻿namespace FastFoodOrdering.Api.Services.Interfaces;
+﻿using FastFoodOrdering.Api.DTOs.Auth;
+
+namespace FastFoodOrdering.Api.Services.Interfaces;
 
 public interface IAuthService
 {
-
+    Task<LoginResponseDto?> LoginAsync(LoginRequestDto request);
 }
