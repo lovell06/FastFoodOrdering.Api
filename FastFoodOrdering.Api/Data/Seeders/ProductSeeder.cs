@@ -40,7 +40,7 @@ public static class ProductSeeder
                 Name = "Khoai tây chiên",
                 Price = 30000,
                 Description = "Khoai chiên",
-                ImageUrl = "/images/products/khoai-tay-chien",
+                ImageUrl = "/images/products/khoai-tay-chien.webp",
                 IsAvailable = true
             },
             new Product
@@ -123,7 +123,7 @@ public static class ProductSeeder
                 Name = "Khoai tây chiên",
                 Price = 30000,
                 Description = "Khoai chiên",
-                ImageUrl = "/images/products/khoai-tay-chien",
+                ImageUrl = "/images/products/khoai-tay-chien.webp",
                 IsAvailable = true
             },
             new Product
