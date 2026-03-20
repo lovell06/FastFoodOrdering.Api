@@ -4,8 +4,6 @@ using FastFoodOrdering.Api.Services.Interfaces;
 using System.Text;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
-using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
-
 
 namespace FastFoodOrdering.Api.Services.Implementations;
 

@@ -1,6 +1,5 @@
 using FastFoodOrdering.Api.Data;
 using FastFoodOrdering.Api.Data.Seeders;
-using FastFoodOrdering.Api.Models;
 using FastFoodOrdering.Api.Services.Implementations;
 using FastFoodOrdering.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +7,11 @@ using Scalar.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+});
 
 // Đăng ký ApplicationDbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

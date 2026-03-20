@@ -73,3 +73,12 @@ https://localhost:xxxx/scalar
 - Hãy chắc chắn rằng SQL Server đang hoạt động trước khi chạy lệnh cập nhật database.
 
 - Nếu dự án đã có migration sẵn, chỉ cần chạy dotnet ef database update.
+
+## Các API cơ bản của App:
+
+```API
+GET /api/products
+GET /api/products/detail/{id}
+POST /api/auth/register
+POST /api/auth/login
+```
