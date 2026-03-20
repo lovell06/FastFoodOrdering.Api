@@ -1,4 +1,5 @@
 using FastFoodOrdering.Api.Data;
+using FastFoodOrdering.Api.Data.Seeders;
 using FastFoodOrdering.Api.Services.Implementations;
 using FastFoodOrdering.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,15 @@ builder.Services.AddControllers();
 
 // Đăng ký ApplicationDbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+        .UseSeeding((context, _) =>
+        {
+            DbSeeder.Seed((ApplicationDbContext)context);
+        })
+        .UseAsyncSeeding(async (context, _, cancellationToken) =>
+        {
+            await DbSeeder.SeedAsync((ApplicationDbContext)context, cancellationToken);
+        }));
 
 builder.Services.AddScoped<IProductService, ProductService>();
 
