@@ -1,6 +1,8 @@
-﻿namespace FastFoodOrdering.Api.Services.Implementations;
+﻿using FastFoodOrdering.Api.Services.Interfaces;
 
-public class UserService
+namespace FastFoodOrdering.Api.Services.Implementations;
+
+public class UserService : IUserService
 {
 
 }

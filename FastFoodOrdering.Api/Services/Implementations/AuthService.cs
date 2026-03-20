@@ -1,6 +1,8 @@
-﻿namespace FastFoodOrdering.Api.Services.Implementations;
+﻿using FastFoodOrdering.Api.Services.Interfaces;
 
-public class AuthService
+namespace FastFoodOrdering.Api.Services.Implementations;
+
+public class AuthService : IAuthService
 {
 
 }

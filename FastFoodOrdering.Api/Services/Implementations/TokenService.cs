@@ -1,6 +1,11 @@
-﻿namespace FastFoodOrdering.Api.Services.Implementations;
+﻿using FastFoodOrdering.Api.Services.Interfaces;
 
-public class TokenService
+namespace FastFoodOrdering.Api.Services.Implementations;
+
+public class TokenService :ITokenService
 {
-
+    public string GenerateToken()
+    {
+        throw new NotImplementedException();
+    }
 }

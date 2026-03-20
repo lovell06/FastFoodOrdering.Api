@@ -1,5 +1,6 @@
 using FastFoodOrdering.Api.Data;
 using FastFoodOrdering.Api.Data.Seeders;
+using FastFoodOrdering.Api.Models;
 using FastFoodOrdering.Api.Services.Implementations;
 using FastFoodOrdering.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
             await DbSeeder.SeedAsync((ApplicationDbContext)context, cancellationToken);
         }));
 
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
