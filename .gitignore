@@ -1,5 +1,5 @@
 .vs/
-bin/
-obj/
+FastFoodOrdering.Api/bin/
+FastFoodOrdering.Api/obj/
 *.user
 *.suo

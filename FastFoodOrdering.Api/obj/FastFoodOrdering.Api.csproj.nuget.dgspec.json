@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {}
+    "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {}
   },
   "projects": {
-    "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {
+    "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
+        "projectUniqueName": "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
         "projectName": "FastFoodOrdering.Api",
-        "projectPath": "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
+        "projectPath": "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\obj\\",
+        "outputPath": "d:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
