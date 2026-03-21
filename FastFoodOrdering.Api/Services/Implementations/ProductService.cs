@@ -25,4 +25,19 @@ public class ProductService : IProductService
         
         return products;
     }
+    public async Task<ProductDetailDto?> GetProductByIdAsync(int id)
+    {   
+        var product = await _dbContext.Products
+            .Where(p => p.Id == id)
+            .Select(p => new ProductDetailDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl
+            }).FirstOrDefaultAsync();
+        
+        return product;
+    }
 }

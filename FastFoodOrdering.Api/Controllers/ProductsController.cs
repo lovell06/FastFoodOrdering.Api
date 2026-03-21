@@ -22,4 +22,30 @@ public class ProductsController : ControllerBase
         return Ok(products);
     }
 
+    // GET /api/products/{id}
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetProductById(int id)
+    {
+        var product = await _productService.GetProductByIdAsync(id);
+
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(product);
+    }
+
+    [HttpGet("details/{id}")]
+    public async Task<IActionResult> GetProductDetails(int id)
+    {
+        var product = await _productService.GetProductByIdAsync(id);
+
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(product);
+    }
 }
