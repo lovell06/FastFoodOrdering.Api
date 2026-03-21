@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {}
+    "D:\\Hoc_Tap\\2025-2026_HK2\\Agile\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {}
   },
   "projects": {
-    "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {
+    "D:\\Hoc_Tap\\2025-2026_HK2\\Agile\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
+        "projectUniqueName": "D:\\Hoc_Tap\\2025-2026_HK2\\Agile\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
         "projectName": "FastFoodOrdering.Api",
-        "projectPath": "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\Application\\Project\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\obj\\",
+        "projectPath": "D:\\Hoc_Tap\\2025-2026_HK2\\Agile\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\FastFoodOrdering.Api.csproj",
+        "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
+        "outputPath": "D:\\Hoc_Tap\\2025-2026_HK2\\Agile\\FastFoodOrdering.Api\\FastFoodOrdering.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -21,7 +21,9 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
-        "originalTargetFrameworks": ["net9.0"],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
@@ -29,13 +31,14 @@
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
         "warningProperties": {
-          "warnAsError": ["NU1605"]
+          "warnAsError": [
+            "NU1605"
+          ]
         },
         "restoreAuditProperties": {
           "enableAudit": "true",
@@ -46,9 +49,12 @@
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.9, )"

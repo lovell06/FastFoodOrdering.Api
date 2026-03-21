@@ -24,4 +24,21 @@ public class AuthController : ControllerBase
 
         return Ok(response);
     }
+
+    // API đăng ký
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
+    {
+        // Gọi tầng Service để xử lý logic
+        var result = await _authService.RegisterAsync(request);
+
+        // Nếu thất bại (Email đã tồn tại), trả về lỗi 400
+        if (!result.IsSuccess)
+        {
+            return BadRequest(new { message = result.Message });
+        }
+
+        // Nếu thành công, trả về 200 OK
+        return Ok(new { message = result.Message });
+    }
 }
