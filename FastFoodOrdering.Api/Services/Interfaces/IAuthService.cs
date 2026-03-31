@@ -7,4 +7,6 @@ public interface IAuthService
     Task<LoginResponseDto?> LoginAsync(LoginRequestDto request);
 
     Task<(bool IsSuccess, string Message)> RegisterAsync(RegisterRequestDto request);
+
+    Task<(bool IsSuccess, string Message)> SendRegistrationOtpAsync(SendOtpRequestDto request);
 }
