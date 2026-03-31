@@ -35,17 +35,4 @@ public class ProductsController : ControllerBase
 
         return Ok(product);
     }
-
-    [HttpGet("details/{id}")]
-    public async Task<IActionResult> GetProductDetails(int id)
-    {
-        var product = await _productService.GetProductByIdAsync(id);
-
-        if (product == null)
-        {
-            return NotFound();
-        }
-
-        return Ok(product);
-    }
 }

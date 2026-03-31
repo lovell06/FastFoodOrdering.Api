@@ -1,5 +1,6 @@
 ﻿using FastFoodOrdering.Api.Data;
 using FastFoodOrdering.Api.DTOs.Product;
+using FastFoodOrdering.Api.Models;
 using FastFoodOrdering.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,11 +23,11 @@ public class ProductService : IProductService
                 Price = p.Price,
                 ImageUrl = p.ImageUrl
             }).ToListAsync();
-        
+
         return products;
     }
     public async Task<ProductDetailDto?> GetProductByIdAsync(int id)
-    {   
+    {
         var product = await _dbContext.Products
             .Where(p => p.Id == id)
             .Select(p => new ProductDetailDto
@@ -37,7 +38,7 @@ public class ProductService : IProductService
                 Price = p.Price,
                 ImageUrl = p.ImageUrl
             }).FirstOrDefaultAsync();
-        
+
         return product;
     }
 }
