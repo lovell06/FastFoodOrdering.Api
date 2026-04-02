@@ -6,4 +6,5 @@ public interface IProductService
 {
     Task<IEnumerable<ProductListItemDto>> GetAllProductAsync();
     Task<ProductDetailDto?> GetProductByIdAsync(int id);
+
 }

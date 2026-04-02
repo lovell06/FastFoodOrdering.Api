@@ -2,5 +2,5 @@
 
 public class UpdateProductAvailabilityRequestDto
 {
-
+    public bool IsAvailable { get; set; }
 }
