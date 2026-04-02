@@ -47,28 +47,39 @@ public class AuthService : IAuthService
 
     public async Task<(bool IsSuccess, string Message)> RegisterAsync(RegisterRequestDto request)
     {
-        // 1. Kiểm tra Email (Unhappy Path)
-        var isEmailExist = await _dbContext.Users.AnyAsync(u => u.Email == request.Email);
-        if (isEmailExist)
-        {
-            return (false, "Email này đã được sử dụng. Vui lòng đăng nhập hoặc sử dụng email khác.");
-        }
+        // 1. Check trùng (Chặn sớm)
+        if (await _dbContext.Users.AnyAsync(u => u.Email == request.Email))
+            return (false, "Email đã tồn tại.");
 
+        // 2. Check OTP (Chặn sớm)
+        var validOtp = await _dbContext.OtpVerifications
+            .Where(o => o.Email == request.Email && o.OtpCode == request.OtpCode && !o.IsUsed)
+            .FirstOrDefaultAsync();
+
+        if (validOtp == null || validOtp.ExpiryTime < DateTime.UtcNow)
+            return (false, "Mã OTP không hợp lệ hoặc hết hạn."); // <--- NẾU SAI OTP, CODE DỪNG TẠI ĐÂY.
+
+        // 3. TỚI ĐÂY LÀ OTP ĐÃ ĐÚNG RỒI -> BẮT ĐẦU TẠO ACC
         var newUser = new User
         {
             FullName = request.FullName,
             Email = request.Email,
             Phone = request.Phone,
-            Role = UserRole.Customer
+            Role = UserRole.Customer,
+            Password = _passwordService.HashPassword(new User(), request.Password)
         };
-        // 2. Mã hóa mật khẩu
-        string passwordHash = _passwordService.HashPassword(newUser, request.Password);
-        newUser.Password = passwordHash;
 
+        // Đưa User vào danh sách chờ thêm
         _dbContext.Users.Add(newUser);
+
+        // Đánh dấu mã OTP này đã dùng
+        validOtp.IsUsed = true;
+        _dbContext.OtpVerifications.Update(validOtp);
+
+        // CHỐT HẠ: Lưu cả việc tạo User và việc cập nhật OTP vào DB cùng lúc
         await _dbContext.SaveChangesAsync();
 
-        return (true, "Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản.");
+        return (true, "Đăng ký thành công!");
     }
 
     public async Task<(bool IsSuccess, string Message)> SendRegistrationOtpAsync(SendOtpRequestDto request)
