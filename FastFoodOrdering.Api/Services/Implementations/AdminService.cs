@@ -12,7 +12,7 @@ namespace FastFoodOrdering.Api.Services.Implementations;
 public class AdminService : IAdminService
 {
     private const string ProductImageFolder = "Images";
-    private const string ProductImageSubFolder = "product";
+    private const string ProductImageSubFolder = "products";
 
     private readonly ApplicationDbContext _dbContext;
     private readonly IWebHostEnvironment _env;
