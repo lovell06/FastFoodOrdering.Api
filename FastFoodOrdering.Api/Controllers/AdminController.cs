@@ -17,11 +17,16 @@ public class AdminController : ControllerBase
 
     // POST /api/admin/products
     [HttpPost("products")]
-    public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequestDto request)
+    public async Task<IActionResult> CreateProduct([FromForm] CreateProductRequestDto request)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
+        }
+
+        if (request.Image == null || request.Image.Length == 0)
+        {
+            return BadRequest("Image is required. Upload image file using multipart/form-data.");
         }
 
         var product = await _adminService.CreateProductAsync(request);
@@ -30,7 +35,7 @@ public class AdminController : ControllerBase
 
     // PUT /api/admin/products/{id}
     [HttpPut("products/{id}")]
-    public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequestDto request)
+    public async Task<IActionResult> UpdateProduct(int id, [FromForm] UpdateProductRequestDto request)
     {
         if (!ModelState.IsValid)
         {
