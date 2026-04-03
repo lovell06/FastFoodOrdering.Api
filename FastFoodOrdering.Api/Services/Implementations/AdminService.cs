@@ -2,10 +2,7 @@ using FastFoodOrdering.Api.Data;
 using FastFoodOrdering.Api.DTOs.Product;
 using FastFoodOrdering.Api.Models;
 using FastFoodOrdering.Api.Services.Interfaces;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System.IO;
 
 namespace FastFoodOrdering.Api.Services.Implementations;
 
@@ -53,7 +50,7 @@ public class AdminService : IAdminService
 
     private string GetUploadFolderPath()
     {
-        var webRootPath = _env.WebRootPath ?? Path.Combine(_env.ContentRootPath, "wwwroot");
+        var webRootPath = _env.WebRootPath;
         var folderPath = Path.Combine(webRootPath, ProductImageFolder, ProductImageSubFolder);
         if (!Directory.Exists(folderPath))
         {
