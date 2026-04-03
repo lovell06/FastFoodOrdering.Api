@@ -120,4 +120,55 @@ public class AuthService : IAuthService
 
         return (true, "Mã OTP đã được gửi đến email của bạn.");
     }
+
+    public async Task<(bool IsSuccess, string Message)> SendForgotPasswordOtpAsync(string email)
+    {
+        // 1. Kiểm tra Email xem có trong hệ thống không
+        var user = await _dbContext.Users.AnyAsync(u => u.Email == email);
+        if (!user) return (false, "Email này không tồn tại trong hệ thống.");
+
+        // 2. Sinh mã OTP 6 số
+        string otpCode = new Random().Next(100000, 999999).ToString();
+
+        // 3. Lưu vào DB (Tái sử dụng bảng OtpVerifications)
+        var otpRecord = new OtpVerification
+        {
+            Email = email,
+            OtpCode = otpCode,
+            ExpiryTime = DateTime.UtcNow.AddMinutes(5), // Hiệu lực 5 phút theo AC5
+            IsUsed = false
+        };
+        _dbContext.OtpVerifications.Add(otpRecord);
+        await _dbContext.SaveChangesAsync();
+
+        // 4. Gửi mail
+        await _emailService.SendEmailAsync(email, "Mã đặt lại mật khẩu", $"Mã OTP của bạn là: {otpCode}");
+        return (true, "Mã OTP đã được gửi.");
+    }
+
+    public async Task<(bool IsSuccess, string Message)> ResetPasswordAsync(ResetPasswordDto request)
+    {
+        // 1. Xác thực mã OTP (Giống luồng Register)
+        var validOtp = await _dbContext.OtpVerifications
+            .Where(o => o.Email == request.Email && o.OtpCode == request.OtpCode && !o.IsUsed)
+            .FirstOrDefaultAsync();
+
+        if (validOtp == null || validOtp.ExpiryTime < DateTime.UtcNow)
+            return (false, "Mã OTP không chính xác hoặc đã hết hạn.");
+
+        // 2. Tìm User để cập nhật
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+        if (user == null) return (false, "Lỗi hệ thống: Không tìm thấy người dùng.");
+
+        // 3. Hash mật khẩu mới và lưu
+        user.Password = _passwordService.HashPassword(user, request.NewPassword);
+
+        // 4. Vô hiệu hóa OTP (AC5)
+        validOtp.IsUsed = true;
+        _dbContext.Update(user);
+        _dbContext.Update(validOtp);
+
+        await _dbContext.SaveChangesAsync();
+        return (true, "Đặt lại mật khẩu thành công. Vui lòng đăng nhập lại.");
+    }
 }
