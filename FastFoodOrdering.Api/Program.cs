@@ -48,6 +48,13 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseCors(policy =>
+{
+    policy.AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
+
 app.MapScalarApiReference();
 
 app.UseHttpsRedirection();
