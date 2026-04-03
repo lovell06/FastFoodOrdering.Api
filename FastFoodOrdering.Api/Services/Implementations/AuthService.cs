@@ -12,11 +12,14 @@ public class AuthService : IAuthService
     private readonly ApplicationDbContext _dbContext;
     private readonly ITokenService _tokenService;
     private readonly IPasswordService _passwordService;
-    public AuthService(ApplicationDbContext dbContext, ITokenService tokenService, IPasswordService passwordService)
+    private readonly IEmailService _emailService;
+
+    public AuthService(ApplicationDbContext dbContext, ITokenService tokenService, IPasswordService passwordService, IEmailService emailService)
     {
         _dbContext = dbContext;
         _tokenService = tokenService;
         _passwordService = passwordService;
+        _emailService = emailService; // Gán giá trị
     }
 
     public async Task<LoginResponseDto?> LoginAsync(LoginRequestDto request)
@@ -44,27 +47,77 @@ public class AuthService : IAuthService
 
     public async Task<(bool IsSuccess, string Message)> RegisterAsync(RegisterRequestDto request)
     {
-        // 1. Kiểm tra Email (Unhappy Path)
+        // 1. Check trùng (Chặn sớm)
+        if (await _dbContext.Users.AnyAsync(u => u.Email == request.Email))
+            return (false, "Email đã tồn tại.");
+
+        // 2. Check OTP (Chặn sớm)
+        var validOtp = await _dbContext.OtpVerifications
+            .Where(o => o.Email == request.Email && o.OtpCode == request.OtpCode && !o.IsUsed)
+            .FirstOrDefaultAsync();
+
+        if (validOtp == null || validOtp.ExpiryTime < DateTime.UtcNow)
+            return (false, "Mã OTP không hợp lệ hoặc hết hạn."); // <--- NẾU SAI OTP, CODE DỪNG TẠI ĐÂY.
+
+        // 3. TỚI ĐÂY LÀ OTP ĐÃ ĐÚNG RỒI -> BẮT ĐẦU TẠO ACC
+        var newUser = new User
+        {
+            FullName = request.FullName,
+            Email = request.Email,
+            Phone = request.Phone,
+            Role = UserRole.Customer,
+            Password = _passwordService.HashPassword(new User(), request.Password)
+        };
+
+        // Đưa User vào danh sách chờ thêm
+        _dbContext.Users.Add(newUser);
+
+        // Đánh dấu mã OTP này đã dùng
+        validOtp.IsUsed = true;
+        _dbContext.OtpVerifications.Update(validOtp);
+
+        // CHỐT HẠ: Lưu cả việc tạo User và việc cập nhật OTP vào DB cùng lúc
+        await _dbContext.SaveChangesAsync();
+
+        return (true, "Đăng ký thành công!");
+    }
+
+    public async Task<(bool IsSuccess, string Message)> SendRegistrationOtpAsync(SendOtpRequestDto request)
+    {
+        // 1. Kiểm tra Email đã tồn tại trong hệ thống chưa (AC4)
         var isEmailExist = await _dbContext.Users.AnyAsync(u => u.Email == request.Email);
         if (isEmailExist)
         {
             return (false, "Email này đã được sử dụng. Vui lòng đăng nhập hoặc sử dụng email khác.");
         }
 
-        var newUser = new User
-        {
-            FullName = request.FullName,
-            Email = request.Email,
-            Phone = request.Phone,
-            Role = UserRole.Customer
-        };
-        // 2. Mã hóa mật khẩu
-        string passwordHash = _passwordService.HashPassword(newUser, request.Password);
-        newUser.Password = passwordHash;
+        // 2. Sinh mã OTP 6 số ngẫu nhiên
+        string otpCode = new Random().Next(100000, 999999).ToString();
 
-        _dbContext.Users.Add(newUser);
+        // 3. Vô hiệu hóa các mã OTP cũ của email này (nếu có) để tránh spam/nhầm lẫn
+        var oldOtps = await _dbContext.OtpVerifications
+            .Where(o => o.Email == request.Email && !o.IsUsed)
+            .ToListAsync();
+        foreach (var oldOtp in oldOtps)
+        {
+            oldOtp.IsUsed = true;
+        }
+
+        // 4. Lưu OTP mới vào Database, thời hạn 5 phút
+        var otpRecord = new OtpVerification
+        {
+            Email = request.Email,
+            OtpCode = otpCode,
+            ExpiryTime = DateTime.UtcNow.AddMinutes(5),
+            IsUsed = false
+        };
+        _dbContext.OtpVerifications.Add(otpRecord);
         await _dbContext.SaveChangesAsync();
 
-        return (true, "Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản.");
+        // 5. Gửi Email (AC1)
+        string emailBody = $"Mã xác thực đăng ký tài khoản của bạn là: {otpCode}. Mã này sẽ hết hạn sau 5 phút.";
+        await _emailService.SendEmailAsync(request.Email, "Mã xác thực đăng ký", emailBody);
+
+        return (true, "Mã OTP đã được gửi đến email của bạn.");
     }
 }

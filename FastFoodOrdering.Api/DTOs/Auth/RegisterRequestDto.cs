@@ -28,4 +28,8 @@ public class RegisterRequestDto
     [Required(ErrorMessage = "Xác nhận mật khẩu không được bỏ trống.")]
     [Compare("Password", ErrorMessage = "Mật khẩu xác nhận không trùng khớp.")]
     public string ConfirmPassword { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Mã OTP không được bỏ trống.")]
+    [StringLength(6, MinimumLength = 6, ErrorMessage = "Mã OTP phải có đúng 6 ký tự.")]
+    public string OtpCode { get; set; } = string.Empty;
 }

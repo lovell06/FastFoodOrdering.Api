@@ -1,35 +1,3 @@
-# Build output
 bin/
 obj/
-
-# User-specific files
-*.user
-*.rsuser
-*.suo
-
-# Visual Studio / VS Code / Rider
 .vs/
-.vscode/
-.idea/
-
-# ReSharper / Rider
-_ReSharper*/
-*.DotSettings.user
-
-# Logs
-*.log
-
-# NuGet
-*.nupkg
-*.snupkg
-
-# Test results
-TestResults/
-*.trx
-
-# Publish output
-publish/
-
-# OS files
-.DS_Store
-Thumbs.db

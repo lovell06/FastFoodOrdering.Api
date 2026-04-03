@@ -41,4 +41,18 @@ public class AuthController : ControllerBase
         // Nếu thành công, trả về 200 OK
         return Ok(new { message = result.Message });
     }
+
+    // Gửi OTP cho đăng ký
+    [HttpPost("send-register-otp")]
+    public async Task<IActionResult> SendRegisterOtp([FromBody] SendOtpRequestDto request)
+    {
+        var result = await _authService.SendRegistrationOtpAsync(request);
+
+        if (!result.IsSuccess)
+        {
+            return BadRequest(new { message = result.Message });
+        }
+
+        return Ok(new { message = result.Message });
+    }
 }
