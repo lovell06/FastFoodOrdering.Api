@@ -1,3 +1,60 @@
+# Build output
 bin/
 obj/
+
+# Visual Studio
 .vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Publish output
+publish/
+app.publish/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test / coverage
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# Local database files
+*.mdf
+*.ldf
+*.db
+*.db-shm
+*.db-wal
+
+# Environment / secrets
+.env
+.env.*
+secrets.json
+
+# Local-only appsettings
+appsettings.Local.json
+appsettings.*.Local.json
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
