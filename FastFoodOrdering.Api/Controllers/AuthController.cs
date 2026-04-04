@@ -55,4 +55,23 @@ public class AuthController : ControllerBase
 
         return Ok(new { message = result.Message });
     }
+
+    // Gửi OTP quên mật khẩu
+    [HttpPost("send-forgot-password-otp")]
+    public async Task<IActionResult> SendForgotPasswordOtp([FromBody] SendOtpRequestDto request)
+    {
+        // Tái sử dụng lại SendOtpRequestDto vì nó chỉ có 1 trường Email
+        var result = await _authService.SendForgotPasswordOtpAsync(request.Email);
+        if (!result.IsSuccess) return BadRequest(new { message = result.Message });
+        return Ok(new { message = result.Message });
+    }
+
+    // API 4: Đặt lại mật khẩu mới
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto request)
+    {
+        var result = await _authService.ResetPasswordAsync(request);
+        if (!result.IsSuccess) return BadRequest(new { message = result.Message });
+        return Ok(new { message = result.Message });
+    }
 }

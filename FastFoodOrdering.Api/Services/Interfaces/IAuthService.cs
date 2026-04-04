@@ -9,4 +9,8 @@ public interface IAuthService
     Task<(bool IsSuccess, string Message)> RegisterAsync(RegisterRequestDto request);
 
     Task<(bool IsSuccess, string Message)> SendRegistrationOtpAsync(SendOtpRequestDto request);
+
+    Task<(bool IsSuccess, string Message)> SendForgotPasswordOtpAsync(string email);
+
+    Task<(bool IsSuccess, string Message)> ResetPasswordAsync(ResetPasswordDto request);
 }
