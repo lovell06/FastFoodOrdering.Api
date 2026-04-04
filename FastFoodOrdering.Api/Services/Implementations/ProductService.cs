@@ -16,6 +16,8 @@ public class ProductService : IProductService
     public async Task<IEnumerable<ProductListItemDto>> GetAllProductAsync()
     {
         var products = await _dbContext.Products
+            .AsNoTracking()
+            .Where(p => p.IsAvailable)
             .Select(p => new ProductListItemDto
             {
                 Id = p.Id,
@@ -29,6 +31,8 @@ public class ProductService : IProductService
     public async Task<ProductDetailDto?> GetProductByIdAsync(int id)
     {
         var product = await _dbContext.Products
+            .AsNoTracking()
+            .Where(p => p.IsAvailable)
             .Where(p => p.Id == id)
             .Select(p => new ProductDetailDto
             {
