@@ -9,7 +9,7 @@ public class Product
     public string ImageUrl { get; set; } = string.Empty;
     public int StockQuantity { get; set; }
 
-    private bool _isAvailable;
+    private bool _isAvailable = true;
     public bool IsAvailable
     {
         get => _isAvailable;
