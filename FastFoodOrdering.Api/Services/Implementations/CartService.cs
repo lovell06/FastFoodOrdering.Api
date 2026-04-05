@@ -60,5 +60,19 @@ namespace FastFoodOrdering.Api.Services.Implementations
                 .AsNoTracking() 
                 .FirstOrDefaultAsync(c => c.UserId == userId);
         }
+        public async Task ClearCartAsync(int userId)
+        {
+            var cart = await _context.Carts
+                .Where(c => c.UserId == userId)
+                .FirstOrDefaultAsync();
+
+            if (cart != null)
+            {
+                var items = _context.CartItems.Where(x => x.CartId == cart.Id);
+                _context.CartItems.RemoveRange(items);
+
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

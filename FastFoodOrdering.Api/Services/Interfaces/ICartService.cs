@@ -8,5 +8,6 @@ namespace FastFoodOrdering.Api.Services.Interfaces
         Task<bool> AddItemToCartAsync(int userId, AddToCartDto addToCartDto);
 
         Task<Cart> GetCartByUserIdAsync(int userId);
+        Task ClearCartAsync(int userId);
     }
 }
