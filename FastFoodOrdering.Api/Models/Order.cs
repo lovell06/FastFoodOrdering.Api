@@ -11,6 +11,11 @@ public class Order
     public PaymentMethod PaymentMethod { get; set; }
     public PaymentStatus PaymentStatus { get; set; }
 
+    public string FullName { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
+    public string? Note { get; set; }
+
     // Navigation Properties
     public virtual User User { get; set; } = null!;
     // 1 Order có nhiều OrderDetails
