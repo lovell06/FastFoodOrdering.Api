@@ -1,4 +1,5 @@
-﻿using FastFoodOrdering.Api.DTOs.Cart;
+﻿using FastFoodOrdering.Api.Data;
+using FastFoodOrdering.Api.DTOs.Cart;
 using FastFoodOrdering.Api.Models;
 using FastFoodOrdering.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -71,6 +72,53 @@ namespace FastFoodOrdering.Api.Controllers
             {
                 return StatusCode(500, new { message = "Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng." });
             }
+        }
+
+        // 🔥 1. API TĂNG SỐ LƯỢNG
+        [HttpPut("increase/{itemId}")]
+        public async Task<IActionResult> IncreaseQuantity(int itemId, [FromServices] ApplicationDbContext dbContext)
+        {
+            // Sửa CartItems thành Set<CartItem>()
+            var item = await dbContext.Set<CartItem>().FindAsync(itemId);
+            if (item == null) return NotFound(new { message = "Không tìm thấy món ăn" });
+
+            item.Quantity++;
+            await dbContext.SaveChangesAsync();
+            return Ok(new { message = "Đã tăng số lượng" });
+        }
+
+        // 🔥 2. API GIẢM SỐ LƯỢNG
+        [HttpPut("decrease/{itemId}")]
+        public async Task<IActionResult> DecreaseQuantity(int itemId, [FromServices] ApplicationDbContext dbContext)
+        {
+            var item = await dbContext.Set<CartItem>().FindAsync(itemId);
+            if (item == null) return NotFound();
+
+            if (item.Quantity > 1)
+            {
+                item.Quantity--;
+            }
+            else
+            {
+                // Dùng hàm Remove tổng quát
+                dbContext.Remove(item);
+            }
+
+            await dbContext.SaveChangesAsync();
+            return Ok(new { message = "Đã giảm số lượng" });
+        }
+
+        // 🔥 3. API XÓA MÓN ĂN
+        [HttpDelete("remove/{itemId}")]
+        public async Task<IActionResult> RemoveItem(int itemId, [FromServices] ApplicationDbContext dbContext)
+        {
+            var item = await dbContext.Set<CartItem>().FindAsync(itemId);
+            if (item != null)
+            {
+                dbContext.Remove(item);
+                await dbContext.SaveChangesAsync();
+            }
+            return Ok(new { message = "Đã xóa món ăn" });
         }
 
     }

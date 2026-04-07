@@ -4,5 +4,5 @@ namespace FastFoodOrdering.Api.Services.Interfaces;
 
 public interface IOrderService
 {
-    Task<object> CreateOrderAsync(int userId, CreateOrderDto dto);
+    Task<(bool IsSuccess, string Message, int? OrderId)> CreateOrderAsync(int userId, CreateOrderRequestDto dto);
 }
