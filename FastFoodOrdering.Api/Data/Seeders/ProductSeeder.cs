@@ -17,7 +17,8 @@ public static class ProductSeeder
                 Price = 50000,
                 Description = "Burger bò phô mai",
                 ImageUrl = "/images/products/burger-bo-pho-mai.jpg",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -25,7 +26,8 @@ public static class ProductSeeder
                 Price = 60000,
                 Description = "Gà chiên giòn",
                 ImageUrl = "/images/products/ga-ran-truyen-thong.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
 
             },
             new Product
@@ -34,7 +36,8 @@ public static class ProductSeeder
                 Price = 65000,
                 Description = "Gà cay",
                 ImageUrl = "/images/products/ga-ran-han-quoc.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
 
             },
             new Product
@@ -43,7 +46,8 @@ public static class ProductSeeder
                 Price = 30000,
                 Description = "Khoai chiên",
                 ImageUrl = "/images/products/khoai-tay-chien.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -51,7 +55,8 @@ public static class ProductSeeder
                 Price = 35000,
                 Description = "Hotdog",
                 ImageUrl = "/images/products/hotdog.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -59,7 +64,8 @@ public static class ProductSeeder
                 Price = 90000,
                 Description = "Pizza",
                 ImageUrl = "/images/products/pizza-xucxich.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -67,7 +73,8 @@ public static class ProductSeeder
                 Price = 15000,
                 Description = "Nước ngọt",
                 ImageUrl = "/images/products/cocacola.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -75,7 +82,8 @@ public static class ProductSeeder
                 Price = 40000,
                 Description = "Trà sữa",
                 ImageUrl = "/images/products/tra-sua.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -83,7 +91,8 @@ public static class ProductSeeder
                 Price = 20000,
                 Description = "Kem",
                 ImageUrl = "/images/products/kem-vani.webp",
-                StockQuantity = 100             
+                StockQuantity = 100,
+                IsAvailable = true             
             }
         );
 
@@ -102,7 +111,8 @@ public static class ProductSeeder
                 Price = 50000,
                 Description = "Burger bò phô mai",
                 ImageUrl = "/images/products/burger-bo-pho-mai.jpg",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
 
             },
             new Product
@@ -111,7 +121,8 @@ public static class ProductSeeder
                 Price = 60000,
                 Description = "Gà chiên giòn",
                 ImageUrl = "/images/products/ga-ran-truyen-thong.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -119,7 +130,8 @@ public static class ProductSeeder
                 Price = 65000,
                 Description = "Gà cay",
                 ImageUrl = "/images/products/ga-ran-han-quoc.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -127,7 +139,8 @@ public static class ProductSeeder
                 Price = 30000,
                 Description = "Khoai chiên",
                 ImageUrl = "/images/products/khoai-tay-chien.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -135,7 +148,8 @@ public static class ProductSeeder
                 Price = 35000,
                 Description = "Hotdog",
                 ImageUrl = "/images/products/hotdog.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -143,7 +157,8 @@ public static class ProductSeeder
                 Price = 90000,
                 Description = "Pizza",
                 ImageUrl = "/images/products/pizza-xucxich.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -151,7 +166,8 @@ public static class ProductSeeder
                 Price = 15000,
                 Description = "Nước ngọt",
                 ImageUrl = "/images/products/cocacola.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -159,7 +175,8 @@ public static class ProductSeeder
                 Price = 40000,
                 Description = "Trà sữa",
                 ImageUrl = "/images/products/tra-sua.webp",
-                StockQuantity = 100
+                StockQuantity = 100,
+                IsAvailable = true
             },
             new Product
             {
@@ -167,7 +184,8 @@ public static class ProductSeeder
                 Price = 20000,
                 Description = "Kem",
                 ImageUrl = "/images/products/kem-vani.webp",
-                StockQuantity = 100     
+                StockQuantity = 100,
+                IsAvailable = true     
             }
         );
 
