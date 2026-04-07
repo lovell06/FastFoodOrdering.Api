@@ -1,3 +1,4 @@
+using FastFoodOrdering.Api.DTOs.Order;
 using FastFoodOrdering.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ namespace FastFoodOrdering.Api.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly ICartService _cartService;
-        private readonly IOrderService _orderService;S
+        private readonly IOrderService _orderService;
 
         public OrdersController(ICartService cartService, IOrderService orderService)
         {

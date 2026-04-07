@@ -62,16 +62,16 @@ namespace FastFoodOrdering.Api.Services.Implementations
         }
         public async Task ClearCartAsync(int userId)
         {
-            var cart = await _context.Carts
+            var cart = await _dbContext.Carts
                 .Where(c => c.UserId == userId)
                 .FirstOrDefaultAsync();
 
             if (cart != null)
             {
-                var items = _context.CartItems.Where(x => x.CartId == cart.Id);
-                _context.CartItems.RemoveRange(items);
+                var items = _dbContext.CartItems.Where(x => x.CartId == cart.Id);
+                _dbContext.CartItems.RemoveRange(items);
 
-                await _context.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync();
             }
         }
     }
